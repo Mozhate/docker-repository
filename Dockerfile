@@ -1,1 +1,1 @@
-FROM twang2218/gitlab-ce-zh:latest
+FROM gitlab/gitlab-ce
