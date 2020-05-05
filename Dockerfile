@@ -1,1 +1,1 @@
-FROM mysql:5.7.26
+FROM openjdk:8-jre-alpine
