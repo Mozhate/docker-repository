@@ -1,1 +1,1 @@
-FROM jboss/kie-server
+FROM jboss/drools-workbench-showcase
