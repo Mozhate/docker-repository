@@ -1,28 +1,10 @@
-####### BASE ############
-FROM jboss/drools-workbench:7.17.0.Final
+From jboss/drools-workbench-showcase:7.15.0.Final
 
-####### MAINTAINER ############
-MAINTAINER "Michael Biarnes Kiefer" "mbiarnes@redhat.com"
-
-####### ENVIRONMENT ############
-# Use demo and examples by default in this showcase image (internet connection required).
-ENV KIE_SERVER_PROFILE standalone-full-drools
-ENV JAVA_OPTS -Xms256m -Xmx256m -Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8
-
-####### Drools Workbench CUSTOM CONFIGURATION ############
-ADD etc/standalone-full-drools.xml $JBOSS_HOME/standalone/configuration/standalone-full-drools.xml
-ADD etc/drools-users.properties $JBOSS_HOME/standalone/configuration/drools-users.properties
-ADD etc/drools-roles.properties $JBOSS_HOME/standalone/configuration/drools-roles.properties
+####JVM最大堆内存调大#####
+ENV JAVA_OPTS -Xms256m -Xmx4096m -Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8
 
 # Added files are chowned to root user, change it to the jboss one.
 USER root
-RUN chown jboss:jboss $JBOSS_HOME/standalone/configuration/standalone-full-drools.xml && \
-chown jboss:jboss $JBOSS_HOME/standalone/configuration/drools-users.properties && \
-chown jboss:jboss $JBOSS_HOME/standalone/configuration/drools-roles.properties
 
-# Switchback to jboss user
-USER jboss
-
-####### RUNNING DROOLS-WB ############
-WORKDIR $JBOSS_HOME/bin/
-CMD ["./start_drools-wb.sh"]
+###docker容器时间同步配置####
+RUN ln -snf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' > /etc/timezone
