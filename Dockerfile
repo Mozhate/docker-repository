@@ -1,1 +1,1 @@
-FROM sonatype/nexus:latest
+FROM sonatype/nexus3:latest
