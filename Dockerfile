@@ -1,1 +1,1 @@
-FROM openjdk:8-jre-alpine
+FROM rabbitmq:management-alpine
