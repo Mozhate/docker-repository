@@ -1,1 +1,1 @@
-FROM rancher/rancher-agent:latest
+FROM rancher/rancher-agent
